@@ -37,10 +37,13 @@ then
         . /sw/bin/init.sh
     fi
     export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+fi
 
+if [[ $HOSTNAME == *facebook.com ]]; then
     if [-f ~/.bashrc]; then
         . ~/.bashrc
     fi
+    echo "Wake up, Neo, you are at work"
 fi
 
 if test ${OS} = "FreeBSD"
