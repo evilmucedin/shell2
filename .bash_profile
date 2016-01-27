@@ -37,6 +37,10 @@ then
         . /sw/bin/init.sh
     fi
     export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+
+    if [-f ~/.bashrc]; then
+        . ~/.bashrc
+    fi
 fi
 
 if test ${OS} = "FreeBSD"
