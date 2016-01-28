@@ -31,7 +31,7 @@ if [[ $HOSTNAME == *facebook.com ]]; then
     if [ -f ~/.bashrc ]; then
         . ~/.bashrc
     fi
-    echo "Wake up, Neo, you are at work"
+    echo "Wake up, Neo, you are at work."
 fi
 
 alias ds="mosh -6 dev9204.prn1.facebook.com"
