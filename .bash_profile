@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if test ${HOSTNAME} != "denplusplus-nb"
+then
+    export TERM=xterm-color
+fi
+
 shopt -s histappend
 export HISTFILESIZE=200000
 #export HISTIGNORE="&:ls:bg:fg:ps x:exit"
@@ -179,11 +184,6 @@ fi
 
 alias toScripts="cd ~/work/arcadia/junk/denplusplus/scripts"
 alias gP="~/genProject.py"
-
-if test ${HOSTNAME} != "denplusplus-nb"
-then
-    export TERM=xterm-color
-fi
 
 if test ${HOSTNAME} = "arc.yandex.ru" -o ${HOSTNAME} = "glagol.yandex.ru" -o ${HOSTNAME} = "daiquiri.yandex.ru" -o ${HOSTNAME} = "fireball" -o ${HOSTNAME} = "den-ubuntu" -o ${HOSTNAME} = "shaman" -o ${HOSTNAME} = "boogie8.yandex.ru"
 then
