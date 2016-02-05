@@ -39,9 +39,9 @@ if [[ $HOSTNAME == *facebook.com ]]; then
     echo "Wake up, Neo, you are at work."
 fi
 
-FACEBOOK_DS = "dev9204.prn1.facebook.com"
+export FACEBOOK_DS='dev9204.prn1.facebook.com'
 
-alias ds="mosh -6 $FACEBOOK_DS"
+alias ds="mosh --no-init -6 ${FACEBOOK_DS}"
 
 if test ${OS} = "FreeBSD"
 then
@@ -249,12 +249,14 @@ if test ${OS} = "Linux"; then
     fi
 fi
 
-if test ${HOSTNAME} = $FACEBOOK_DS; then
+if test "${HOSTNAME}" = "${FACEBOOK_DS}"; then
     if [ "$TERM" != "nuclide" ] && [ -t 0 ] && [ -z "$TMUX" ] && which tmux >/dev/null 2>&1 && [[ "`tmux -V`" == "tmux 1.8" ]]; then
       if tmux has-session -t auto >/dev/null 2>&1; then
-        tmux -2CC attach-session -t auto
+        echo "Neo, attaching tmux."
+        tmux -2 attach-session -t auto
       else
-        tmux -2CC new-session -s auto
+        echo "Neo, launching tmux."
+        tmux -2 new-session -s auto
       fi
     fi
 fi
