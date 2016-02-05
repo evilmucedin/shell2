@@ -9,6 +9,7 @@ set shiftwidth=4
 if isFacebookMode
     set tabstop=2
     set shiftwidth=2
+    set softtabstop=2
 endif
 
 "set autoindent
