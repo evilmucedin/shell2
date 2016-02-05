@@ -1,8 +1,18 @@
 "$Id: .vimrc,v 1.32 2012/01/03 22:34:18 denplusplus Exp $
 
-"set autoindent
+let hostname = system('hostname')
+let isFacebookMode = match(hostname, 'facebook') >= 0
+
 set tabstop=4
 set shiftwidth=4
+
+if isFacebookMode
+    set tabstop=2
+    set shiftwidth=2
+    set softtabstop=2
+endif
+
+"set autoindent
 set expandtab
 syntax enable
 set nocompatible
