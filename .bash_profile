@@ -46,6 +46,7 @@ fi
 export FACEBOOK_DS='dev9204.prn1.facebook.com'
 
 alias ds="mosh --no-init -6 ${FACEBOOK_DS}"
+alias ds2="mosh --no-init -6 dev9537.prn1.facebook.com"
 
 if test ${OS} = "FreeBSD"
 then
