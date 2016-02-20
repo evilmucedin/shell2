@@ -62,9 +62,10 @@ alias ls="ls -l"
 alias topu="top -U denplusplus"
 alias setru='export LANG=ru_RU.KOI8-R'
 alias grepc='find . \( -name \*.cpp -o -name \*.h -o -name \*.cc -o -name \*.hh -o -name \*.c -o -name \*.dbc -o -name \*.l -o -name \*.y -o -name \*.rl \) | grep -v .svn |  xargs grep -n'
-alias greph='find . \( -name \*.h -o -name \*.hh  \) | grep -v .svn | xargs egrep -n'
+alias greph='find . \( -name \*.h -o -name \*.hh -o -name \*.hpp \) | grep -v .svn | xargs egrep -n'
 alias grepm='find . \( -name CMakeLists.\* -o -name TARGETS  \) | grep -v .svn | xargs egrep -n'
 alias greps='find . -type f | grep -v .svn | xargs egrep -n'
+alias grept='find . \( -name \*.thrift \) | grep -v .svn | xargs egrep -n'
 alias pushdd='pushd `pwd`'
 alias vim='vim -p'
 alias gvim='gvim -p'
