@@ -233,6 +233,14 @@ gogo()
     ssh -At maitai.yandex.ru "ssh -At denplusplus@$1.yandex.ru"
 }
 
+toBuck()
+{
+    DIR=`pwd`
+    BUCK_DIR=${DIR/fbcode/fbcode\/buck-out\/gen}
+    pushd $DIR
+    cd $BUCK_DIR
+}
+
 SSH_ENV="$HOME/.ssh/environment"
 
 function start_agent {
