@@ -10,6 +10,7 @@ if isFacebookMode
     set tabstop=2
     set shiftwidth=2
     set softtabstop=2
+    source $LOCAL_ADMIN_SCRIPTS/master.vimrc
 endif
 
 "set autoindent
