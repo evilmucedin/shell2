@@ -1,0 +1,5 @@
+[ui]
+username =   <denplusplus@fb.com>
+
+[alias]
+chg = st --change .
