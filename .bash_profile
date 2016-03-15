@@ -32,12 +32,14 @@ then
     export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 fi
 
+FACEBOOK=0
 if [[ $HOSTNAME == *facebook.com ]]; then
     if [ -f ~/.bashrc ]; then
         . ~/.bashrc
     fi
     echo "Wake up, Neo, you are at work."
     source $ADMIN_SCRIPTS/scm-prompt
+    FACEBOOK=1
     TMUX_REG="'s/^.*=//'"
     alias tmuxStatus="tmux showenv -g TMUX_LOC_\$(tmux display -p \"#D\" | tr -d %) | sed $TMUX_REG"
     export PS1=$PS1'$( [ -n "$TMUX" ] && tmux setenv -g TMUX_LOC_$(tmux display -p "#D" | tr -d %) "$(_dotfiles_scm_info)")'
@@ -45,7 +47,7 @@ fi
 
 export FACEBOOK_DS='dev9204.prn1.facebook.com'
 export FACEBOOK_DS2='dev9537.prn1.facebook.com'
-export FACEBOOK_DS3='dev9555.prn1.facebook.com'
+export FACEBOOK_DS3='devbig715.ash4.facebook.com'
 
 alias ds="mosh --no-init -6 ${FACEBOOK_DS}"
 alias ds2="mosh --no-init -6 ${FACEBOOK_DS2}"
@@ -250,6 +252,9 @@ function start_agent {
     echo succeeded
     chmod 600 "${SSH_ENV}"
     . "${SSH_ENV}" > /dev/null
+    if [ "$FACEBOOK" ]; then
+        export SSH_AUTH_SOCK=/var/run/ssh-agent/agent.111114
+    fi
     /usr/bin/ssh-add;
 }
 
