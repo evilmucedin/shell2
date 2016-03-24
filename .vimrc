@@ -5,12 +5,14 @@ let isFacebookMode = match(hostname, 'facebook') >= 0
 
 set tabstop=4
 set shiftwidth=4
+set makeprg=~denplusplus/work/arcadia/cmake/scripts/cMake.py
 
 if isFacebookMode
     set tabstop=2
     set shiftwidth=2
     set softtabstop=2
     source $LOCAL_ADMIN_SCRIPTS/master.vimrc
+    set makeprg=export\ PT=\$(realpath)\;\ cd\ ~/fbsource/fbcode;\ buck\ build\ --report-absolute-paths\ \$\{PT:40\}/...
 endif
 
 "set autoindent
@@ -85,8 +87,6 @@ set statusline=%<%f%h%m%r%=%b\ %{&encoding}\ 0x%B\ \ %l,%c%V\ %P
 set laststatus=2
 
 map gf :tabe <cfile><CR>
-
-set makeprg=~denplusplus/work/arcadia/cmake/scripts/cMake.py
 
 func! SwitchHeader()
     if bufname("%")=~'\.cpp'
