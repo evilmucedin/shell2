@@ -250,13 +250,12 @@ SSH_ENV="$HOME/.ssh/environment"
 function start_agent {
     echo "Initialising new SSH agent..."
     /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-    echo succeeded
+    if [ "${FACEBOOK}" ]; then
+        echo export SSH_AUTH_SOCK=/var/run/ssh-agent/agent.111114 >> "${SSH_ENV}"
+    fi
     chmod 600 "${SSH_ENV}"
     . "${SSH_ENV}" > /dev/null
-    if [ "$FACEBOOK" ]; then
-        export SSH_AUTH_SOCK=/var/run/ssh-agent/agent.111114
-    fi
-    /usr/bin/ssh-add;
+    /usr/bin/ssh-add
 }
 
 # Source SSH settings, if applicable
@@ -264,7 +263,6 @@ function start_agent {
 if test ${OS} = "Linux"; then
     if [ -f "${SSH_ENV}" ]; then
         . "${SSH_ENV}" > /dev/null
-        #ps ${SSH_AGENT_PID} doesn't work under cywgin
         ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
             start_agent;
         }
