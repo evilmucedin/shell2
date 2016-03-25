@@ -43,6 +43,7 @@ if [[ $HOSTNAME == *facebook.com ]]; then
     TMUX_REG="'s/^.*=//'"
     alias tmuxStatus="tmux showenv -g TMUX_LOC_\$(tmux display -p \"#D\" | tr -d %) | sed $TMUX_REG"
     export PS1=$PS1'$( [ -n "$TMUX" ] && tmux setenv -g TMUX_LOC_$(tmux display -p "#D" | tr -d %) "$(_dotfiles_scm_info)")'
+    alias buckPath='PT=$(realpath); echo ${PT:40}'
 fi
 
 export FACEBOOK_DS='dev9204.prn1.facebook.com'
