@@ -8,7 +8,6 @@ fi
 shopt -s histappend
 export HISTFILESIZE=200000
 #export HISTIGNORE="&:ls:bg:fg:ps x:exit"
-#export PROMPT_COMMAND='history -a; echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD}\007"'
 if test ${USER} = "denplusplus"
 then
     SUSER=""
@@ -16,7 +15,7 @@ else
     SUSER="${USER}@"
 fi
 export PROMPT_COMMAND='history -a; echo -ne "\033]0;${SUSER}${HOSTNAME%%.*}:${PWD}\007"'
-
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 export CLICOLOR=1
 export EDITOR=vim
 
