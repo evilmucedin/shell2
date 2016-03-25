@@ -53,13 +53,6 @@ alias ds="mosh --no-init -6 ${FACEBOOK_DS}"
 alias ds2="mosh --no-init -6 ${FACEBOOK_DS2}"
 alias ds3="mosh --no-init -6 ${FACEBOOK_DS3}"
 
-if test ${OS} = "FreeBSD"
-then
-    alias amake="make"
-else
-    alias amake="pmake"
-fi
-
 alias ls="ls -l"
 alias topu="top -U denplusplus"
 alias setru='export LANG=ru_RU.KOI8-R'
@@ -79,20 +72,95 @@ vd()
     vimdiff $1/$3 $2/$3
 }
 
-svndi()
-{
-    svn di $* | vim - -R
-}
-
-cvsdi()
-{
-    cvs di $* | vim - -R
-}
-
 monitor()
 {
-    while [ 1 ]; do clear; $1; sleep 3; done
+    while [ 1 ]; do
+      clear; 
+      $1; 
+      sleep 3; 
+    done
 }
+
+NoHup2()
+{
+    CMD=$1
+    NAME=$2
+    nohup nice -n 20 $CMD </dev/null >$NAME.out 2>$NAME.err &
+}
+
+NoHup()
+{
+    CMD=$1
+    NoHup2 "$CMD" "nohup"
+}
+
+if test $OS = "Linux"
+then
+    alias ls="ls -l --color=yes"
+fi
+
+case "$TERM" in
+xterm-color)
+ PS1='\[\033[36m\]\A \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+ ;;
+*)
+ PS1='\A \u@\h:\w\$ '
+ ;;
+esac
+
+export LANG=en_US.UTF-8
+
+toBuck()
+{
+    DIR=`pwd`
+    BUCK_DIR=${DIR/fbcode/fbcode\/buck-out\/gen}
+    pushd $DIR
+    cd $BUCK_DIR
+}
+
+SSH_ENV="$HOME/.ssh/environment"
+
+function start_agent {
+    echo "Initialising new SSH agent..."
+    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+    if [ "${FACEBOOK}" ]; then
+        echo export SSH_AUTH_SOCK=/var/run/ssh-agent/agent.111114 >> "${SSH_ENV}"
+    fi
+    chmod 600 "${SSH_ENV}"
+    . "${SSH_ENV}" > /dev/null
+    /usr/bin/ssh-add
+}
+
+# Source SSH settings, if applicable
+
+if test ${OS} = "Linux"; then
+    if [ -f "${SSH_ENV}" ]; then
+        . "${SSH_ENV}" > /dev/null
+        ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+            start_agent;
+        }
+    else
+        start_agent;
+    fi
+fi
+
+if test "${HOSTNAME}" = "${FACEBOOK_DS}" || test "${HOSTNAME}" = "${FACEBOOK_DS2}" || test "${HOSTNAME}" = "${FACEBOOK_DS3}"; then
+    if [ "$TERM" != "nuclide" ] && [ -t 0 ] && [ -z "$TMUX" ] && which tmux >/dev/null 2>&1 && [[ "`tmux -V`" == "tmux 1.8" ]]; then
+      if tmux has-session -t auto >/dev/null 2>&1; then
+        echo "Neo, attaching tmux."
+        tmux -2 attach-session -t auto
+      else
+        echo "Neo, launching tmux."
+        tmux -2 new-session -s auto
+      fi
+    fi
+fi
+
+if [ ${FACEBOOK} ]; then
+    return
+fi
+
+# Yandex related stuff
 
 copyAuthSSH()
 {
@@ -118,41 +186,22 @@ mkHome()
     chmod g-w /home/$1
 }
 
-NoHup2()
+svndi()
 {
-    CMD=$1
-    NAME=$2
-    nohup nice -n 20 $CMD </dev/null >$NAME.out 2>$NAME.err &
+    svn di $* | vim - -R
 }
 
-NoHup()
+cvsdi()
 {
-    CMD=$1
-    NoHup2 "$CMD" "nohup"
+    cvs di $* | vim - -R
 }
 
-YR()
-{
-    yr $1 PRINTSERVERLIST | xargs -I % rsh % "$2"
-}
-
-if test $OS = "Linux"
+if test ${OS} = "FreeBSD"
 then
-    alias ls="ls -l --color=yes"
+    alias amake="make"
+else
+    alias amake="pmake"
 fi
-
-case "$TERM" in
-xterm-color)
- PS1='\[\033[36m\]\A \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
- ;;
-*)
- PS1='\A \u@\h:\w\$ '
- ;;
-esac
-
-export LANG=en_US.UTF-8
-
-# Yandex related stuff
 
 export PATH=~/bin/bin:$PATH:/sbin:/usr/sbin:/Berkanavt/bin/scripts
 export CVSROOT=tree.yandex.ru:/opt/CVSROOT
@@ -236,48 +285,7 @@ gogo()
     ssh -At maitai.yandex.ru "ssh -At denplusplus@$1.yandex.ru"
 }
 
-toBuck()
+YR()
 {
-    DIR=`pwd`
-    BUCK_DIR=${DIR/fbcode/fbcode\/buck-out\/gen}
-    pushd $DIR
-    cd $BUCK_DIR
+    yr $1 PRINTSERVERLIST | xargs -I % rsh % "$2"
 }
-
-SSH_ENV="$HOME/.ssh/environment"
-
-function start_agent {
-    echo "Initialising new SSH agent..."
-    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-    if [ "${FACEBOOK}" ]; then
-        echo export SSH_AUTH_SOCK=/var/run/ssh-agent/agent.111114 >> "${SSH_ENV}"
-    fi
-    chmod 600 "${SSH_ENV}"
-    . "${SSH_ENV}" > /dev/null
-    /usr/bin/ssh-add
-}
-
-# Source SSH settings, if applicable
-
-if test ${OS} = "Linux"; then
-    if [ -f "${SSH_ENV}" ]; then
-        . "${SSH_ENV}" > /dev/null
-        ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-            start_agent;
-        }
-    else
-        start_agent;
-    fi
-fi
-
-if test "${HOSTNAME}" = "${FACEBOOK_DS}" || test "${HOSTNAME}" = "${FACEBOOK_DS2}" || test "${HOSTNAME}" = "${FACEBOOK_DS3}"; then
-    if [ "$TERM" != "nuclide" ] && [ -t 0 ] && [ -z "$TMUX" ] && which tmux >/dev/null 2>&1 && [[ "`tmux -V`" == "tmux 1.8" ]]; then
-      if tmux has-session -t auto >/dev/null 2>&1; then
-        echo "Neo, attaching tmux."
-        tmux -2 attach-session -t auto
-      else
-        echo "Neo, launching tmux."
-        tmux -2 new-session -s auto
-      fi
-    fi
-fi
