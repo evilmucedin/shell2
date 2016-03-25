@@ -50,8 +50,8 @@ nnoremap <silent> <F6> :tabp<CR>
 nnoremap <silent> <F7> :tabn<CR>
 map <F9> :make release<CR>
 map <C-F9> :make<CR>
-inoremap <Esc>b <C-\><C-O>b
-inoremap <Esc>f <C-\><C-O>w
+map <Esc>b <C-Left>
+map <Esc>f <C-Right>
 
 set tags=/home/denplusplus/work/arcadia/tags,./tags,../tags,../../tags,../../../tags,../../../../tags
 set path+=.,..,../..,../../..,../../../..
