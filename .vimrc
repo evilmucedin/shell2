@@ -100,3 +100,6 @@ endfunc
 
 nmap  :call SwitchHeader()<Enter>
 autocmd FileType c,cpp,h autocmd BufWritePre <buffer> :%s/\s\+$//e
+
+set t_Co=256
+let g:Powerline_symbols = "fancy"
