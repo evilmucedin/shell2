@@ -66,7 +66,7 @@ alias vim='vim -p'
 alias gvim='gvim -p'
 alias Rsync='rsync -rptzL --progress --inplace --rsh=ssh'
 alias vimall='vim $(hg chg -n)'
-alias less=`less -r`
+alias less='less -r'
 
 vd()
 {
