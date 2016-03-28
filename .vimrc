@@ -105,3 +105,4 @@ set t_Co=256
 
 set wildmenu
 set wildmode=list:longest
+set completeopt=preview,menuone,longest
