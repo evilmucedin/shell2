@@ -1,5 +1,3 @@
-"$Id: .vimrc,v 1.32 2012/01/03 22:34:18 denplusplus Exp $
-
 let hostname = system('hostname')
 let isFacebookMode = match(hostname, 'facebook') >= 0
 
@@ -12,6 +10,7 @@ if isFacebookMode
     set shiftwidth=2
     set softtabstop=2
     source $LOCAL_ADMIN_SCRIPTS/master.vimrc
+    source /home/engshare/admin/scripts/vim/biggrep.vim
     set makeprg=export\ PT=\$(realpath)\;\ cd\ ~/fbsource/fbcode;\ buck\ build\ --report-absolute-paths\ \$\{PT:40\}/...
 endif
 
@@ -106,3 +105,15 @@ set t_Co=256
 set wildmenu
 set wildmode=list:longest
 set completeopt=preview,menuone,longest
+
+let g:solarized_termcolors=256
+colorscheme solarized
+set background=dark
+
+map <C-I> :pyf /usr/local/share/clang/clang-format.py<cr>
+
+if isFacebookMode
+  " let g:fbvim_py_path_override='/home/denplusplus/scripts/vim/fbvimpylib/fbvim.py'
+  " source /home/denplusplus/scripts/vim/fbvim.vim
+  nmap <F5> :FBGW<CR>
+endif

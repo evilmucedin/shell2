@@ -14,8 +14,6 @@ then
 else
     SUSER="${USER}@"
 fi
-export PROMPT_COMMAND='history -a; echo -ne "\033]0;${SUSER}${HOSTNAME%%.*}:${PWD}\007"'
-export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 export CLICOLOR=1
 export EDITOR=vim
 
@@ -40,12 +38,12 @@ if [[ $HOSTNAME == *facebook.com ]]; then
     source $ADMIN_SCRIPTS/scm-prompt
     FACEBOOK=1
     TMUX_REG="'s/^.*=//'"
-    alias tmuxStatus="tmux showenv -g TMUX_LOC_\$(tmux display -p \"#D\" | tr -d %) | sed $TMUX_REG"
-    export PS1=$PS1'$( [ -n "$TMUX" ] && tmux setenv -g TMUX_LOC_$(tmux display -p "#D" | tr -d %) "$(_dotfiles_scm_info)")'
+    # alias tmuxStatus="tmux showenv -g TMUX_LOC_\$(tmux display -p \"#D\" | tr -d %) | sed $TMUX_REG"
+    # export PS1=$PS1'$( [ -n "$TMUX" ] && tmux setenv -g TMUX_LOC_$(tmux display -p "#D" | tr -d %) "$(_dotfiles_scm_info)")'
     alias buckPath='PT=$(realpath); echo ${PT:40}'
 
     function bb() {
-      buck build $* `buckPath`
+      buck build $* `buckPath`/...
     }
 fi
 
@@ -104,9 +102,14 @@ then
     alias ls="ls -l --color=yes"
 fi
 
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 case "$TERM" in
 xterm-color)
- PS1='\[\033[36m\]\A \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  if [ ${FACEBOOK} ]; then
+    PS1='\[\033[36m\]\A \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;35m\]$(_dotfiles_scm_info)\[\033[00m\]\$ '
+  else
+    PS1='\[\033[36m\]\A \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  fi
  ;;
 *)
  PS1='\A \u@\h:\w\$ '
