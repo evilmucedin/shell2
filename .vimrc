@@ -1,8 +1,24 @@
-"$Id: .vimrc,v 1.32 2012/01/03 22:34:18 denplusplus Exp $
+let hostname = system('hostname')
+let isFacebookMode = match(hostname, 'facebook') >= 0
 
-"set autoindent
 set tabstop=4
 set shiftwidth=4
+let cMakePath="~denplusplus/work/arcadia/cmake/scripts/cMake.py"
+if filereadable(cMakePath)
+    set makeprg=cMakePath
+endif
+
+
+if isFacebookMode
+    set tabstop=2
+    set shiftwidth=2
+    set softtabstop=2
+    source $LOCAL_ADMIN_SCRIPTS/master.vimrc
+    source /home/engshare/admin/scripts/vim/biggrep.vim
+    set makeprg=export\ PT=\$(realpath)\;\ cd\ ~/fbsource/fbcode;\ buck\ build\ --report-absolute-paths\ \$\{PT:40\}/...
+endif
+
+"set autoindent
 set expandtab
 syntax enable
 set nocompatible
@@ -37,6 +53,8 @@ nnoremap <silent> <F6> :tabp<CR>
 nnoremap <silent> <F7> :tabn<CR>
 map <F9> :make release<CR>
 map <C-F9> :make<CR>
+map <Esc>b <C-Left>
+map <Esc>f <C-Right>
 
 set tags=/home/denplusplus/work/arcadia/tags,./tags,../tags,../../tags,../../../tags,../../../../tags
 set path+=.,..,../..,../../..,../../../..
@@ -75,11 +93,6 @@ set laststatus=2
 
 map gf :tabe <cfile><CR>
 
-let cMakePath="~denplusplus/work/arcadia/cmake/scripts/cMake.py"
-if filereadable(cMakePath)
-    set makeprg=cMakePath
-endif
-
 func! SwitchHeader()
     if bufname("%")=~'\.cpp'
         fin %:r.h
@@ -90,3 +103,21 @@ endfunc
 
 nmap  :call SwitchHeader()<Enter>
 autocmd FileType c,cpp,h autocmd BufWritePre <buffer> :%s/\s\+$//e
+
+set t_Co=256
+
+set wildmenu
+set wildmode=list:longest
+set completeopt=preview,menuone,longest
+
+let g:solarized_termcolors=256
+colorscheme solarized
+set background=dark
+
+map <C-I> :pyf /usr/local/share/clang/clang-format.py<cr>
+
+if isFacebookMode
+  " let g:fbvim_py_path_override='/home/denplusplus/scripts/vim/fbvimpylib/fbvim.py'
+  " source /home/denplusplus/scripts/vim/fbvim.vim
+  nmap <F5> :FBGW<CR>
+endif
