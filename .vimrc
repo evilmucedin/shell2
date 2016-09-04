@@ -75,7 +75,10 @@ set laststatus=2
 
 map gf :tabe <cfile><CR>
 
-set makeprg=~denplusplus/work/arcadia/cmake/scripts/cMake.py
+let cMakePath="~denplusplus/work/arcadia/cmake/scripts/cMake.py"
+if filereadable(cMakePath)
+    set makeprg=cMakePath
+endif
 
 func! SwitchHeader()
     if bufname("%")=~'\.cpp'
