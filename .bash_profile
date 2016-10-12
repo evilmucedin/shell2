@@ -57,9 +57,10 @@ alias ds="mosh --no-init -6 ${FACEBOOK_DS}"
 alias ds2="mosh --no-init -6 ${FACEBOOK_DS2}"
 alias ds3="mosh --no-init -6 ${FACEBOOK_DS3}"
 
-alias ls="ls -l"
+alias grep='grep --color'
+alias egrep='egrep --color'
+alias ls="ls -l --color=yes"
 alias topu="top -U denplusplus"
-alias setru='export LANG=ru_RU.KOI8-R'
 alias grepc='find . \( -name \*.cpp -o -name \*.h -o -name \*.cc -o -name \*.hh -o -name \*.c -o -name \*.dbc -o -name \*.l -o -name \*.y -o -name \*.rl \) | grep -v .svn |  xargs grep -n'
 alias greph='find . \( -name \*.h -o -name \*.hh -o -name \*.hpp \) | grep -v .svn | xargs egrep -n'
 alias grepm='find . \( -name CMakeLists.\* -o -name TARGETS  \) | grep -v .svn | xargs egrep -n'
@@ -171,6 +172,8 @@ if [ ${FACEBOOK} ]; then
 fi
 
 # Yandex related stuff
+
+alias setru='export LANG=ru_RU.KOI8-R'
 
 copyAuthSSH()
 {
