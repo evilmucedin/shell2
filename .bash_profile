@@ -16,6 +16,7 @@ else
 fi
 export CLICOLOR=1
 export EDITOR=vim
+export CUDA_ROOT=/Developer/NVIDIA/CUDA-7.5
 
 OS=`uname -s`
 HOSTNAME=`hostname`
