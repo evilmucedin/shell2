@@ -41,7 +41,8 @@ if [[ $HOSTNAME == *facebook.com ]]; then
     TMUX_REG="'s/^.*=//'"
     # alias tmuxStatus="tmux showenv -g TMUX_LOC_\$(tmux display -p \"#D\" | tr -d %) | sed $TMUX_REG"
     # export PS1=$PS1'$( [ -n "$TMUX" ] && tmux setenv -g TMUX_LOC_$(tmux display -p "#D" | tr -d %) "$(_dotfiles_scm_info)")'
-    alias buckPath='PT=$(realpath); echo ${PT:40}'
+    alias buckPath='PT=$(realpath .); echo ${PT:40}'
+    alias push='/usr/local/bin/push_parallel'
 
     function bb() {
       buck build $* `buckPath`/...
@@ -106,7 +107,7 @@ fi
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 case "$TERM" in
 xterm-color)
-  if [ ${FACEBOOK} ] && [ -e $ADMIN_SCRIPTS/scm-prompt ]; then
+  if [ ${FACEBOOK} ]; then
     PS1='\[\033[36m\]\A \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;35m\]$(_dotfiles_scm_info)\[\033[00m\]\$ '
   else
     PS1='\[\033[36m\]\A \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
@@ -154,7 +155,7 @@ if test ${OS} = "Linux"; then
 fi
 
 if test "${HOSTNAME}" = "${FACEBOOK_DS}" || test "${HOSTNAME}" = "${FACEBOOK_DS2}" || test "${HOSTNAME}" = "${FACEBOOK_DS3}"; then
-    if [ "$TERM" != "nuclide" ] && [ -t 0 ] && [ -z "$TMUX" ] && which tmux >/dev/null 2>&1 && [[ "`tmux -V`" == "tmux 1.8" ]]; then
+    if [ "$TERM" != "nuclide" ] && [ -t 0 ] && [ -z "$TMUX" ] && which tmux >/dev/null 2>&1 && [[ "`tmux -V`" == "tmux 1.8" || "`tmux -V`" == "tmux 2.2" ]]; then
       if tmux has-session -t auto >/dev/null 2>&1; then
         echo "Neo, attaching tmux."
         tmux -2 attach-session -t auto
@@ -266,6 +267,7 @@ then
     export LD_LIBRARY_PATH=/large/X11R6/lib:${LD_LIBRARY_PATH}
 else
     alias grep='grep --color'
+    alias egrep='egrep --color'
 fi
 
 copySettings()
