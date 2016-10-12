@@ -3,7 +3,11 @@ let isFacebookMode = match(hostname, 'facebook') >= 0
 
 set tabstop=4
 set shiftwidth=4
-set makeprg=~denplusplus/work/arcadia/cmake/scripts/cMake.py
+let cMakePath="~denplusplus/work/arcadia/cmake/scripts/cMake.py"
+if filereadable(cMakePath)
+    set makeprg=cMakePath
+endif
+
 
 if isFacebookMode
     set tabstop=2
