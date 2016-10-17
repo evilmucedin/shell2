@@ -59,7 +59,6 @@ alias ds3="mosh --no-init -6 ${FACEBOOK_DS3}"
 
 alias grep='grep --color'
 alias egrep='egrep --color'
-alias ls="ls -l --color=yes"
 alias topu="top -U denplusplus"
 alias grepc='find . \( -name \*.cpp -o -name \*.h -o -name \*.cc -o -name \*.hh -o -name \*.c -o -name \*.dbc -o -name \*.l -o -name \*.y -o -name \*.rl \) | grep -v .svn | xargs grep -n --color'
 alias greph='find . \( -name \*.h -o -name \*.hh -o -name \*.hpp \) | grep -v .svn | xargs egrep -n --color'
@@ -108,7 +107,7 @@ fi
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 case "$TERM" in
 xterm-color)
-  if [ ${FACEBOOK} ]; then
+  if [ ${FACEBOOK} ] && [ -e _dotfiles_scm_info ]; then
     PS1='\[\033[36m\]\A \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;35m\]$(_dotfiles_scm_info)\[\033[00m\]\$ '
   else
     PS1='\[\033[36m\]\A \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
