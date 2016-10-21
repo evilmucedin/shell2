@@ -107,7 +107,7 @@ fi
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 case "$TERM" in
 xterm-color)
-  if [ ${FACEBOOK} ] && [ -e _dotfiles_scm_info ]; then
+  if [ ${FACEBOOK} ] && [ ! `_dotfiles_scm_info` == *'not found'* ]; then
     PS1='\[\033[36m\]\A \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;35m\]$(_dotfiles_scm_info)\[\033[00m\]\$ '
   else
     PS1='\[\033[36m\]\A \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
