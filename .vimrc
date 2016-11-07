@@ -121,3 +121,8 @@ if isFacebookMode
   " source /home/denplusplus/scripts/vim/fbvim.vim
   nmap <F5> :FBGW<CR>
 endif
+
+if $VIM_CRONTAB == "true"
+  set nobackup
+  set nowritebackup
+endif

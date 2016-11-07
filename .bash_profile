@@ -302,3 +302,5 @@ YR()
 {
     yr $1 PRINTSERVERLIST | xargs -I % rsh % "$2"
 }
+
+alias crontab="VIM_CRONTAB=true crontab"
