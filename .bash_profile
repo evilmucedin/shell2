@@ -30,14 +30,14 @@ then
     export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 fi
 
-FACEBOOK=0
+FACEBOOK="false"
 if [[ $HOSTNAME == *facebook.com ]]; then
     if [ -f ~/.bashrc ]; then
         . ~/.bashrc
     fi
     echo "Wake up, Neo, you are at work."
     source $ADMIN_SCRIPTS/scm-prompt
-    FACEBOOK=1
+    FACEBOOK="true"
     TMUX_REG="'s/^.*=//'"
     # alias tmuxStatus="tmux showenv -g TMUX_LOC_\$(tmux display -p \"#D\" | tr -d %) | sed $TMUX_REG"
     # export PS1=$PS1'$( [ -n "$TMUX" ] && tmux setenv -g TMUX_LOC_$(tmux display -p "#D" | tr -d %) "$(_dotfiles_scm_info)")'
@@ -107,7 +107,7 @@ fi
 export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
 case "$TERM" in
 xterm-color)
-  if [ ${FACEBOOK} ] && [ ! `_dotfiles_scm_info` == *'not found'* ]; then
+  if [ $FACEBOOK == "true" ] && [ ! `_dotfiles_scm_info` == *'not found'* ]; then
     PS1='\[\033[36m\]\A \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;35m\]$(_dotfiles_scm_info)\[\033[00m\]\$ '
   else
     PS1='\[\033[36m\]\A \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
@@ -133,11 +133,11 @@ SSH_ENV="$HOME/.ssh/environment"
 function start_agent {
     echo "Initialising new SSH agent..."
     /usr/bin/ssh-agent | sed 's/^echo/#echo/' >"${SSH_ENV}"
-    if [ ${FACEBOOK} ]; then
+    if [ $FACEBOOK == "true" ]; then
         echo export SSH_AUTH_SOCK=/var/run/ssh-agent/agent.111114 >>"${SSH_ENV}"
     fi
     chmod 600 "${SSH_ENV}"
-    . "${SSH_ENV}" > /dev/null
+    . "${SSH_ENV}" >/dev/null
     /usr/bin/ssh-add
 }
 
@@ -166,7 +166,7 @@ if test "${HOSTNAME}" = "${FACEBOOK_DS}" || test "${HOSTNAME}" = "${FACEBOOK_DS2
     fi
 fi
 
-if [ ${FACEBOOK} ]; then
+if [ $FACEBOOK == "true" ]; then
     return
 fi
 
