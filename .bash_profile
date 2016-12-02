@@ -6,7 +6,7 @@ then
 fi
 
 shopt -s histappend
-export HISTFILESIZE=200000
+export HISTFILESIZE=1000000
 #export HISTIGNORE="&:ls:bg:fg:ps x:exit"
 if test ${USER} = "denplusplus"
 then
@@ -302,3 +302,5 @@ YR()
 {
     yr $1 PRINTSERVERLIST | xargs -I % rsh % "$2"
 }
+
+alias crontab="VIM_CRONTAB=true crontab"
