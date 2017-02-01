@@ -50,10 +50,12 @@ if [[ $HOSTNAME == *facebook.com ]]; then
 fi
 
 export FACEBOOK_DS='dev9204.prn1.facebook.com'
+export FACEBOOK_DS1='dev11889.prn2.facebook.com'
 export FACEBOOK_DS2='dev9537.prn1.facebook.com'
 export FACEBOOK_DS3='devbig715.ash4.facebook.com'
 
 alias ds="mosh --no-init -6 ${FACEBOOK_DS}"
+alias ds1="mosh --no-init -6 ${FACEBOOK_DS1}"
 alias ds2="mosh --no-init -6 ${FACEBOOK_DS2}"
 alias ds3="mosh --no-init -6 ${FACEBOOK_DS3}"
 
@@ -154,7 +156,7 @@ if test ${OS} = "Linux"; then
     fi
 fi
 
-if test "${HOSTNAME}" = "${FACEBOOK_DS}" || test "${HOSTNAME}" = "${FACEBOOK_DS2}" || test "${HOSTNAME}" = "${FACEBOOK_DS3}"; then
+if test "${HOSTNAME}" = "${FACEBOOK_DS}" || test "${HOSTNAME}" = "${FACEBOOK_DS1}" || test "${HOSTNAME}" = "${FACEBOOK_DS2}" || test "${HOSTNAME}" = "${FACEBOOK_DS3}"; then
     if [ "$TERM" != "nuclide" ] && [ -t 0 ] && [ -z "$TMUX" ] && which tmux >/dev/null 2>&1 && [[ "`tmux -V`" == "tmux 1.8" || "`tmux -V`" == "tmux 2.2" ]]; then
       if tmux has-session -t auto >/dev/null 2>&1; then
         echo "Neo, attaching tmux."
