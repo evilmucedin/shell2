@@ -49,15 +49,13 @@ if [[ $HOSTNAME == *facebook.com ]]; then
     }
 fi
 
-export FACEBOOK_DS='dev9204.prn1.facebook.com'
 export FACEBOOK_DS1='dev11889.prn2.facebook.com'
 export FACEBOOK_DS2='dev9537.prn1.facebook.com'
-export FACEBOOK_DS3='devbig715.ash4.facebook.com'
+export FACEBOOK_DS3='devbig284.frc2.facebook.com'
 
-alias ds="mosh --no-init -6 ${FACEBOOK_DS}"
 alias ds1="mosh --no-init -6 ${FACEBOOK_DS1}"
 alias ds2="mosh --no-init -6 ${FACEBOOK_DS2}"
-alias ds3="mosh --no-init -6 ${FACEBOOK_DS3}"
+alias ds4="mosh --no-init -6 ${FACEBOOK_DS3}"
 
 alias grep='grep --color'
 alias egrep='egrep --color'
@@ -167,6 +165,8 @@ if test "${HOSTNAME}" = "${FACEBOOK_DS}" || test "${HOSTNAME}" = "${FACEBOOK_DS1
       fi
     fi
 fi
+
+export FB_UID=100011223126069
 
 if [ $FACEBOOK == "true" ]; then
     return
