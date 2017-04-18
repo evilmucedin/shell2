@@ -45,7 +45,7 @@ if [[ $HOSTNAME == *facebook.com ]]; then
     alias push='/usr/local/bin/push_parallel'
 
     function bb() {
-      buck build $* `buckPath`/...
+      buck build -j 80 $* `buckPath`/...
     }
 fi
 
