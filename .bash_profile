@@ -55,7 +55,7 @@ export FACEBOOK_DS3='devbig284.frc2.facebook.com'
 
 alias ds1="mosh --no-init -6 ${FACEBOOK_DS1}"
 alias ds2="mosh --no-init -6 ${FACEBOOK_DS2}"
-alias ds4="mosh --no-init -6 ${FACEBOOK_DS3}"
+alias ds3="mosh --no-init -6 ${FACEBOOK_DS3}"
 
 alias grep='grep --color'
 alias egrep='egrep --color'
