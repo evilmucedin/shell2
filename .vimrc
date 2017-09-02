@@ -6,6 +6,11 @@ set shiftwidth=4
 let cMakePath="~denplusplus/work/arcadia/cmake/scripts/cMake.py"
 if filereadable(cMakePath)
     set makeprg=cMakePath
+else
+    let cItPath="../cIt.sh"
+    if filereadable(cItPath)
+        execute "set makeprg=".cItPath
+    endif
 endif
 
 
