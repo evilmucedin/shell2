@@ -119,7 +119,11 @@ let g:solarized_termcolors=256
 colorscheme solarized
 set background=dark
 
-map <C-I> :pyf /usr/local/share/clang/clang-format.py<cr>
+if filereadable("/usr/local/share/clang/clang-format.py")
+    map <C-I> :py3f /usr/local/share/clang/clang-format.py<cr>
+else
+    map <C-I> :py3f /usr/share/vim/addons/syntax/clang-format.py<cr>
+endif
 
 if isFacebookMode
   " let g:fbvim_py_path_override='/home/denplusplus/scripts/vim/fbvimpylib/fbvim.py'
