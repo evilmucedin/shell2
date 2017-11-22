@@ -306,3 +306,5 @@ YR()
 }
 
 alias crontab="VIM_CRONTAB=true crontab"
+export force_color_prompt=yes
+export color_prompt=yes
