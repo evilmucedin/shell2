@@ -1,6 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/home/denplusplus/Temp/asus-wl/broadcom/src/1.9.2.7-rtn/config'
-let g:netrw_dirhist_2='/home/denplusplus/.vim'
-let g:netrw_dirhist_3='/home/denplusplus'
-let g:netrw_dirhist_4='/home/den/Programming/project-euler/lib/io'
