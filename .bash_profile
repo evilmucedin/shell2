@@ -308,3 +308,5 @@ YR()
 alias crontab="VIM_CRONTAB=true crontab"
 export force_color_prompt=yes
 export color_prompt=yes
+
+export UBUNTU_PACKAGES="vim python3-pip g++ clang-format gnome-tweak-tool chromium-browser ant gnome-shell-extension-system-monitor libboost-tools-dev cmake"
