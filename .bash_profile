@@ -7,6 +7,7 @@ fi
 
 shopt -s histappend
 export HISTFILESIZE=1000000
+export HISTSIZE=1000000
 #export HISTIGNORE="&:ls:bg:fg:ps x:exit"
 if test ${USER} = "denplusplus"
 then
