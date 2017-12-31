@@ -7,6 +7,7 @@ fi
 
 shopt -s histappend
 export HISTFILESIZE=1000000
+export HISTSIZE=1000000
 #export HISTIGNORE="&:ls:bg:fg:ps x:exit"
 if test ${USER} = "denplusplus"
 then
@@ -308,3 +309,6 @@ YR()
 alias crontab="VIM_CRONTAB=true crontab"
 export force_color_prompt=yes
 export color_prompt=yes
+
+alias ubuntu_up="sudo apt-get update; sudo apt-get dist-upgrade; sudo apt-get autoremove"
+export UBUNTU_PACKAGES="vim python3-pip g++ clang-format gnome-tweak-tool chromium-browser ant gnome-shell-extension-system-monitor cmake ubuntu-restricted-addons ubuntu-restricted-addons git ctags vlc libboost-all-dev cabextract font-manager powertop atop tmux wavemon"
