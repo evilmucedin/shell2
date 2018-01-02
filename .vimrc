@@ -135,3 +135,5 @@ if $VIM_CRONTAB == "true"
   set nobackup
   set nowritebackup
 endif
+
+set runtimepath^=~/.vim/bundle/ctrlp.vim
