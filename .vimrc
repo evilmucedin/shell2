@@ -13,7 +13,6 @@ else
     endif
 endif
 
-
 if isFacebookMode
     set tabstop=2
     set shiftwidth=2
@@ -137,3 +136,7 @@ if $VIM_CRONTAB == "true"
 endif
 
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+augroup filetypedetect
+    au BufRead,BufNewFile */BUCK setfiletype python
+augroup END
