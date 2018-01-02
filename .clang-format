@@ -1,5 +1,5 @@
 BasedOnStyle: Google
 IndentWidth: 4
-ColumnLimit: 180
+ColumnLimit: 120
 # SpaceAfterTemplateKeyword: 0
 AlwaysBreakTemplateDeclarations: true
