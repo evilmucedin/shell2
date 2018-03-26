@@ -312,3 +312,30 @@ export color_prompt=yes
 
 alias ubuntu_up="sudo apt-get update; sudo apt-get dist-upgrade; sudo apt-get autoremove"
 export UBUNTU_PACKAGES="vim python3-pip g++ clang-format gnome-tweak-tool chromium-browser ant gnome-shell-extension-system-monitor cmake ubuntu-restricted-addons ubuntu-restricted-addons git ctags vlc libboost-all-dev cabextract font-manager powertop atop tmux wavemon gnuplot-x11"
+
+case ${TERM} in
+    xterm-color*)
+        if [ "$TMUX" != "" ] ; then
+            # user command to change default pane title on demand
+            function title {
+                TMUX_PANE_TITLE="$*";
+            }
+
+            # function that performs the title update (invoked as PROMPT_COMMAND)
+            function update_title {
+                s=${1:0:16};
+                printf "\033k%s\033" "${s:-$TMUX_PANE_TITLE}";
+            }
+
+            # default pane title is the name of the current process (i.e. 'bash')
+            TMUX_PANE_TITLE=$(ps -o comm $$ | tail -1);
+
+            # Reset title to the default before displaying the command prompt
+            PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'update_title'
+
+            # Update title before executing a command: set it to the command
+            trap 'update_title "$BASH_COMMAND"' DEBUG
+        fi
+
+    ;;
+esac
