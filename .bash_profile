@@ -324,7 +324,7 @@ case ${TERM} in
             # function that performs the title update (invoked as PROMPT_COMMAND)
             function update_title {
                 s=${1:0:16};
-                printf "\033k%s\033" "${s:-$TMUX_PANE_TITLE}";
+                printf "\033k%s\033\\" "${s:-$TMUX_PANE_TITLE}";
             }
 
             # default pane title is the name of the current process (i.e. 'bash')
