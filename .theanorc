@@ -1,3 +1,8 @@
 [global]
 device = cuda
 floatX = float32
+allow_gc = True
+
+[dnn]
+include_path=/usr/local/cuda/include
+library_path=/usr/local/cuda/lib64
