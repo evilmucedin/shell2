@@ -1,5 +1,10 @@
 #!/bin/sh
 
+mkdircd() {
+    mkdir $1
+    cd $1
+}
+
 if test ${HOSTNAME} != "denplusplus-nb"
 then
     export TERM=xterm-color
