@@ -119,9 +119,13 @@ colorscheme solarized
 set background=dark
 
 if filereadable("/usr/local/share/clang/clang-format.py")
-    map <C-I> :py3f /usr/local/share/clang/clang-format.py<cr>
+    map <C-I> :py3file /usr/local/share/clang/clang-format.py<cr>
 else
-    map <C-I> :py3f /usr/share/vim/addons/syntax/clang-format.py<cr>
+    if filereadable("/usr/share/vim/addons/syntax/clang-format.py<")
+        map <C-I> :py3file /usr/share/vim/addons/syntax/clang-format.py<cr>
+    else
+        map <C-I> :py3file /usr/share/vim/vimfiles/syntax/clang-format.py<cr>
+    endif
 endif
 
 if isFacebookMode
