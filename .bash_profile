@@ -348,3 +348,5 @@ case ${TERM} in
 
     ;;
 esac
+
+. "$HOME/.cargo/env"

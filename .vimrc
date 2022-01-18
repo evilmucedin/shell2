@@ -124,7 +124,13 @@ else
     if filereadable("/usr/share/vim/addons/syntax/clang-format.py<")
         map <C-I> :py3file /usr/share/vim/addons/syntax/clang-format.py<cr>
     else
-        map <C-I> :py3file /usr/share/vim/vimfiles/syntax/clang-format.py<cr>
+        if filereadable("/usr/share/vim/vimfiles/syntax/clang-format.py<")
+            map <C-I> :py3file /usr/share/vim/vimfiles/syntax/clang-format.py<cr>
+        else
+            source ~/.vim/vim-clang-format/autoload/clang_format.vim
+            source ~/.vim/vim-clang-format/plugin/clang_format.vim
+            nmap <C-I> :ClangFormat<cr>
+        endif
     endif
 endif
 
