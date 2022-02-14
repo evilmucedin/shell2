@@ -121,10 +121,10 @@ set background=dark
 if filereadable("/usr/local/share/clang/clang-format.py")
     map <C-I> :py3file /usr/local/share/clang/clang-format.py<cr>
 else
-    if filereadable("/usr/share/vim/addons/syntax/clang-format.py<")
+    if filereadable("/usr/share/vim/addons/syntax/clang-format.py")
         map <C-I> :py3file /usr/share/vim/addons/syntax/clang-format.py<cr>
     else
-        if filereadable("/usr/share/vim/vimfiles/syntax/clang-format.py<")
+        if filereadable("/usr/share/vim/vimfiles/syntax/clang-format.py")
             map <C-I> :py3file /usr/share/vim/vimfiles/syntax/clang-format.py<cr>
         else
             source ~/.vim/vim-clang-format/autoload/clang_format.vim
