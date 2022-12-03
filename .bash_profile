@@ -25,7 +25,9 @@ export EDITOR=vim
 export CUDA_ROOT=/Developer/NVIDIA/CUDA-7.5
 
 OS=`uname -s`
+if [[ -x "hostname" ]]; then
 HOSTNAME=`hostname`
+fi
 
 if test ${OS} = "Darwin"
 then
