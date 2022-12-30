@@ -31,7 +31,7 @@ fi
 
 if test ${OS} = "Darwin"
 then
-    export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+    export PATH=/opt/local/bin:/opt/local/sbin:/opt/homebrew/bin:$PATH
     if [ -f /sw/bin/init.sh ]; then
         . /sw/bin/init.sh
     fi
