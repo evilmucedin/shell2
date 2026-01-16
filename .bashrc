@@ -116,4 +116,4 @@ if ! shopt -oq posix; then
   fi
 fi
 
-alias aptupd='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo snap refresh'
+alias aptupd='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo snap refresh && sudo aptitude safe-upgrade'
