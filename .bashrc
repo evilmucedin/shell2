@@ -124,5 +124,5 @@ if [ -z "$SSH_AUTH_SOCK" ]; then
 fi
 
 # Add your GitHub SSH key (change the path if yours is different)
-ssh-add -l > /dev/null || ssh-add ~/.ssh/id_ed25519
+ssh-add -l > /dev/null || ssh-add ~/.ssh/id_rsa
 
