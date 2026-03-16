@@ -119,6 +119,9 @@ fi
 alias aptupd='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo snap refresh && sudo aptitude safe-upgrade'
 
 # Auto-launch ssh-agent and add key
+# Created by `pipx` on 2026-03-14 02:44:35
+export PATH="$PATH:/home/denplusplus/.local/bin"
+
 if [ -z "$SSH_AUTH_SOCK" ]; then
    eval "$(ssh-agent -s)"
 fi
