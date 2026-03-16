@@ -117,3 +117,12 @@ if ! shopt -oq posix; then
 fi
 
 alias aptupd='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo snap refresh && sudo aptitude safe-upgrade'
+
+# Auto-launch ssh-agent and add key
+if [ -z "$SSH_AUTH_SOCK" ]; then
+   eval "$(ssh-agent -s)"
+fi
+
+# Add your GitHub SSH key (change the path if yours is different)
+ssh-add -l > /dev/null || ssh-add ~/.ssh/id_ed25519
+
