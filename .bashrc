@@ -130,3 +130,4 @@ fi
 ssh-add -l > /dev/null || ssh-add ~/.ssh/id_ed25519
 
 alias Ollama1='ollama run qwen2.5-coder:14b-instruct'
+alias Ollama2='ollama run qwen2.5-coder:14b'
