@@ -137,3 +137,10 @@ alias Ollama4='ollama run deepseek-coder-v2
 '
 
 export PATH="$HOME/.local/bin:$PATH"
+
+# Add this to the end of your ~/.bashrc
+[ -f /etc/profile.d/vte-2.91.sh ] && . /etc/profile.d/vte-2.91.sh
+
+if [ -n "$TMUX" ]; then
+    unset PROMPT_COMMAND
+fi
