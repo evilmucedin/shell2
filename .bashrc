@@ -116,7 +116,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-alias aptupd='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo snap refresh && sudo aptitude safe-upgrade'
+alias aptupd='sudo apt update && sudo apt dist-upgrade  && sudo apt upgrade -y && sudo apt autoremove -y && sudo snap refresh && sudo aptitude safe-upgrade'
 
 # Auto-launch ssh-agent and add key
 # Created by `pipx` on 2026-03-14 02:44:35
