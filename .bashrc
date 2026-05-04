@@ -116,9 +116,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-alias aptupd='sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo snap refresh && sudo aptitude safe-upgrade'
+alias aptupd='sudo apt update && sudo apt dist-upgrade  && sudo apt upgrade -y && sudo apt autoremove -y && sudo snap refresh && sudo aptitude safe-upgrade'
 
 # Auto-launch ssh-agent and add key
+# Created by `pipx` on 2026-03-14 02:44:35
+export PATH="$PATH:/home/denplusplus/.local/bin"
+
 if [ -z "$SSH_AUTH_SOCK" ]; then
    eval "$(ssh-agent -s)"
 fi
@@ -126,3 +129,18 @@ fi
 # Add your GitHub SSH key (change the path if yours is different)
 ssh-add -l > /dev/null || ssh-add ~/.ssh/id_rsa
 
+alias Ollama0='ollama run qwen2.5-coder:3b'
+alias Ollama1='ollama run qwen2.5-coder:14b-instruct'
+alias Ollama2='ollama run qwen2.5-coder:14b'
+alias Ollama3='ollama run qwen3.5:27b'
+alias Ollama4='ollama run deepseek-coder-v2'
+
+
+export PATH="$HOME/.local/bin:$PATH"
+
+# Add this to the end of your ~/.bashrc
+[ -f /etc/profile.d/vte-2.91.sh ] && . /etc/profile.d/vte-2.91.sh
+
+if [ -n "$TMUX" ]; then
+    unset PROMPT_COMMAND
+fi
