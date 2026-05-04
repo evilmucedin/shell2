@@ -129,11 +129,12 @@ fi
 # Add your GitHub SSH key (change the path if yours is different)
 ssh-add -l > /dev/null || ssh-add ~/.ssh/id_rsa
 
-alias Ollama0='ollama run qwen2.5-coder:3b'
-alias Ollama1='ollama run qwen2.5-coder:14b-instruct'
-alias Ollama2='ollama run qwen2.5-coder:14b'
-alias Ollama3='ollama run qwen3.5:27b'
-alias Ollama4='ollama run deepseek-coder-v2'
+alias Ollama0='ollama run qwen2.5-coder:0.5b'
+alias Ollama1='ollama run qwen2.5-coder:3b'
+alias Ollama2='ollama run qwen2.5-coder:14b-instruct'
+alias Ollama3='ollama run qwen2.5-coder:14b'
+alias Ollama4='ollama run qwen3.5:27b'
+alias Ollama5='ollama run deepseek-coder-v2'
 
 
 export PATH="$HOME/.local/bin:$PATH"
