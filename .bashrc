@@ -140,6 +140,8 @@ alias Ollama6='ollama run gemma3:12b'
 
 export PATH="$HOME/.local/bin:$PATH"
 
+alias Slack='slack --ozone-platform=x11'
+
 # Add this to the end of your ~/.bashrc
 [ -f /etc/profile.d/vte-2.91.sh ] && . /etc/profile.d/vte-2.91.sh
 
