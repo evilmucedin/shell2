@@ -136,7 +136,7 @@ alias Ollama3='ollama run qwen2.5-coder:14b'
 alias Ollama4='ollama run qwen3.5:27b'
 alias Ollama5='ollama run deepseek-coder-v2'
 alias Ollama6='ollama run gemma3:12b'
-alias OllamaSmallCodin='ollama run qwen2.5-coder:3b'
+alias OllamaSmallCoding='ollama run qwen2.5-coder:3b'
 
 
 export PATH="$HOME/.local/bin:$PATH"
